@@ -1,0 +1,13 @@
+{
+  "expo": {
+    "name": "ws-client",
+    "slug": "ws-client",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "sdkVersion": "49.0.0",
+    "entryPoint": ".vscode/exponentIndex.js"
+  },
+  "name": "ws-client"
+}
