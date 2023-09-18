@@ -17,7 +17,7 @@ const CustomUdpSocket = (port) => {
         console.log('rinfo: ',rinfo)
     })
     udpSocket.once('listening', () => {
-        console.log('listening', srv.address())
+        console.log('listening', udpSocket.address())
     })
 
     

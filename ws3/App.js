@@ -5,11 +5,11 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { NetworkInfo } from 'react-native-network-info'
 import NetInfo from '@react-native-community/netinfo'
-//import { server } from './SocketServer'
+import { server } from './SocketServer'
 import { CustomUdpSocket } from './UdpSocketServer'
 
 const a = CustomUdpSocket(3001)
-
+//const b = server
 export default function App() {
   console.log('device log: ',DeviceInfo.getBaseOsSync())
   const [device, setDevice] = useState('')
