@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "ws2",
+    "slug": "ws2",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "ws2"
+}

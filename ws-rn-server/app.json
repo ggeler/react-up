@@ -1,0 +1,22 @@
+{
+  "expo": {
+    "name": "ws-rn-server",
+    "slug": "ws-rn-server",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "android": {
+      "package": "com.ggeler.wsrnserver"
+    },
+    "ios": {
+      "bundleIdentifier": "com.ggeler.wsrnserver"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "67f83176-d496-4fd4-86c6-e98c4c88d137"
+      }
+    }
+  },
+  "name": "ws-rn-server"
+}
