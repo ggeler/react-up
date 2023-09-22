@@ -5,11 +5,15 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { NetworkInfo } from 'react-native-network-info'
 import NetInfo from '@react-native-community/netinfo'
-import { server } from './SocketServer'
+import { init } from './SocketServer'
 import { CustomUdpSocket } from './UdpSocketServer'
+import { init as TcpWebSocketSrv } from './TcpWebSocketSrv'
+import SocketClient from './SocketClient';
 
-const a = CustomUdpSocket(3001)
-//const b = server
+
+//const a = CustomUdpSocket(3001)
+//const b = init(9001)
+//const srv = TcpWebSocketSrv(9001)
 export default function App() {
   console.log('device log: ',DeviceInfo.getBaseOsSync())
   const [device, setDevice] = useState('')
@@ -74,6 +78,7 @@ export default function App() {
       <Text>NetInfo: {JSON.stringify(netInfo)}</Text>
       <Text>Tipo: { connectionType }</Text>
       <Text>Status: { connectionStatus ? "Conectado" : "Desconectado" }</Text>
+      <SocketClient />
       <StatusBar style="auto" />
     </View>
   );

@@ -1,32 +1,54 @@
-import dgram from 'react-native-tcp-socket'
+import TcpSocket from 'react-native-tcp-socket'
 
-const server = dgram.createServer((socket) => {
+
+/*
+const server = TcpSocket.createServer(function(socket) {
     socket.on('data', (data) => {
-        console.log('data: ',data.toString())
-      })
-      socket.on('end', () => {
-        console.log('end')
-      })
-      socket.on('error', (err) => {
-        console.log('error: ',err)
-      })
-      socket.on('timeout', () => {
-        console.log('timeout')
-      })
-      socket.on('close', () => {
-        console.log('close')
-      })
-}).listen( {port: 3000, host: '0.0.0.0', reuseAddress: true } )
-//server.listen()
-console.log('server: ',server)
-server.on('listening', (socket) => {
-    console.log('listening', socket)
-})
+      socket.write('TCP Socket: Echo server ' + data);
+    });
+  
+    socket.on('error', (error) => {
+      console.log('TCP Socket: An error ocurred with client socket ', error);
+    });
+  
+    socket.on('close', (error) => {
+      console.log('TCP Socket: Closed connection with ', socket.address());
+    });
+  }).listen(connection);
+  */
+function init (requiredPort) {
 
-server.on('connection', (socket) => {
-    console.log('connection')
+  const connection = {
+    port: requiredPort,
+    host: 'localhost',
+    reuseAddress: true
+  }
+  const server = TcpSocket.createServer(function(socket) {
+    socket.on('data', (data) => {
+      socket.write('TCP Socket: Echo server ' + data);
+    });
+  
+    socket.on('error', (error) => {
+      console.log('TCP Socket: An error ocurred with client socket ', error);
+    });
+  
+    socket.on('close', (error) => {
+      console.log('TCP Socket: Closed connection with ', socket.address());
+    });
+  }).listen(connection);
+  
+  server.on('error', (error) => {
+    console.log('TCP Socket: An error ocurred with the server', error);
+  });
+  
+  server.on('close', () => {
+    console.log('Server closed connection');
+  });
 
-})
+  server.on('listening', () => {
+    console.log('TCP Socket ', server)
+  })
+}
 
-export { server }
+export { init }
 

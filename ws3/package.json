@@ -20,7 +20,8 @@
     "react-native-network-info": "^5.2.1",
     "react-native-tcp-socket": "^6.0.6",
     "react-native-udp": "^4.1.7",
-    "react-native-web": "~0.19.6"
+    "react-native-web": "~0.19.6",
+    "react-native-websocket": "^1.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
