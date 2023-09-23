@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "ws-client",
-    "slug": "ws-client",
+    "name": "ws-tcp-client",
+    "slug": "ws-tcp-client",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"

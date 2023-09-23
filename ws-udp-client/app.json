@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "ws3",
+    "name": "ws-udp-client",
     "slug": "ws3",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -32,6 +32,7 @@
       "eas": {
         "projectId": "b5eeedb7-6cbb-4026-b6ec-9cd2b71ae3f9"
       }
-    }
+    },
+    "owner": "ggeler"
   }
 }

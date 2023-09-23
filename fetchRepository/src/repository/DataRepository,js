@@ -1,24 +1,29 @@
-interface IDataRepository {
-    fetchData: Promise<Data>
+interface IDataRepository<T> {
+    fetch_method (): Promise<T>
+    fetchData: Promise<T>
 }
-
-class DataRepository implements IDataRepository {
+type Data = {
+    nombre: String,
+    apellido: String,
+    edad: Number
+}
+class DataRepository implements IDataRepository<Data> {
     constructor(fetchData: Promise<Data>) {
         this.fetchData = fetchData
     }
-    async fetchData = {
+    fetchData: Promise<Data>
+    async fetch_method () {
         try {
             const response = await fetch('https://randomuser.me/api/')
             const data = await response.json()
-            return data.results[0]
+            return data
+        } catch (error) {
+            console.log(error)
+            throw new Error(error)
         }
-    }    
+    }
 }
 
-type Data = {
-    nombre: String;
-    apellido: String;
-    edad: any
-}
+
 
 

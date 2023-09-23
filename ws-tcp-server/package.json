@@ -1,11 +1,11 @@
 {
-  "name": "nodereact",
+  "name": "ws-tcp-server",
   "version": "1.0.0",
   "private": true,
   "description": "",
-  "main": "index.js",
+  "main": "ws.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node ws.js"
   },
   "author": "Avanthika",
   "license": "ISC",

@@ -9,7 +9,7 @@ import { init } from './SocketServer'
 import { CustomUdpSocket } from './UdpSocketServer'
 import { init as TcpWebSocketSrv } from './TcpWebSocketSrv'
 import SocketClient from './SocketClient';
-
+import Constants from 'expo-constants';
 
 //const a = CustomUdpSocket(3001)
 //const b = init(9001)
@@ -70,12 +70,11 @@ export default function App() {
     }
     deviceInfo()
   }, [])
-
+// <Text>NetInfo: {JSON.stringify(netInfo)}</Text>
   return (
     <View style={styles.container}>
       <Text>Hola: {device}</Text>
       <Text>Ip: {ip}</Text>
-      <Text>NetInfo: {JSON.stringify(netInfo)}</Text>
       <Text>Tipo: { connectionType }</Text>
       <Text>Status: { connectionStatus ? "Conectado" : "Desconectado" }</Text>
       <SocketClient />
@@ -90,5 +89,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    marginTop: Constants.statusBarHeight,
+  
   },
 });

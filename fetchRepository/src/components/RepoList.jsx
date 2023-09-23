@@ -1,13 +1,15 @@
-import React from 'react'
-import repositories from '../repository/repository'
-import { FlatList, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import { useState } from 'react/cjs/react.production.min'
+import React, { useEffect, useState } from 'react'
+import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { repository } from '../repository/catRepo'
 
 const renderItemComponent = (data) => {
+  return (
     <TouchableOpacity style={styles.container}>
         <Text> Cat </Text>
+        <Text>DataID: {data.item.id}</Text>
         <Image style={styles.image} source={{ uri: data.item.url }} />
     </TouchableOpacity>
+  )
 }
 
 const ItemSeparator = () => <View style={{
@@ -17,27 +19,23 @@ const ItemSeparator = () => <View style={{
   marginRight: 10
 }} />
 
-const fetchCats = () => {
-  fetch('https://api.thecatapi.com/v1/images/search?limit=10&page=1')
-    .then(res => res.json())
-    .then(data => {
-      console.log(data)
-      return data.data
-    })
-    .catch(e => console.log(e))
-}
-
 const RepositoryList = () => {
-  const cats = fetchCats()
+  const [repositorio, setRepositorio] = useState([])
+
+  useEffect(() => {
+    repository().then(data => {
+      setRepositorio(data)
+      console.log('JSON: ', data)
+    }).catch(error => console.log(error))
+  }, [])
+
   return (
-    <View>
           <FlatList
-            data={cats}
+            data={repositorio}
             renderItem={item => renderItemComponent(item)}
             keyExtractor={item => item.id.toString()}
             ItemSeparatorComponent={ItemSeparator}
           />
-    </View>
   )
 }
 
@@ -45,8 +43,8 @@ export default RepositoryList
 
 const styles = StyleSheet.create({
   container: {
-    height: 300,
-    margin: 10,
+    height: 400,
+    // margin: 10,
     backgroundColor: '#FFF',
     borderRadius: 6
   },
