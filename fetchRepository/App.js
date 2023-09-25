@@ -7,7 +7,7 @@ import Constants from 'expo-constants'
 export default function App () {
   return (
     <View style={styles.container}>
-      <RepositoryList />
+      <RepositoryList style={styles.container} />
       <StatusBar style='dark' />
     </View>
   )

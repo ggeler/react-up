@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
-import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import { repository } from '../repository/catRepo'
+import React, { useEffect, useState, useCallback } from 'react'
+import { Button, FlatList, Image, RefreshControl, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { repository } from '../repository/Reporitorio'
 
 const renderItemComponent = (data) => {
   return (
@@ -19,23 +19,42 @@ const ItemSeparator = () => <View style={{
   marginRight: 10
 }} />
 
-const RepositoryList = () => {
+const RepositoryList = ({ styles }) => {
   const [repositorio, setRepositorio] = useState([])
+  const [refreshing, setRefreshing] = useState(true)
 
-  useEffect(() => {
+  const fetchRepository = () => {
     repository().then(data => {
       setRepositorio(data)
+      setRefreshing(false)
       console.log('JSON: ', data)
     }).catch(error => console.log(error))
-  }, [])
+  }
+
+  const onRefresh = useCallback(() => {
+    setRefreshing(true)
+    console.log('refreshing callback')
+  }, [refreshing])
+
+  useEffect(() => {
+    if (!refreshing) {
+      return
+    }
+    console.log('refresh effect')
+    fetchRepository()
+  }, [refreshing])
 
   return (
-          <FlatList
-            data={repositorio}
-            renderItem={item => renderItemComponent(item)}
-            keyExtractor={item => item.id.toString()}
-            ItemSeparatorComponent={ItemSeparator}
-          />
+    <>
+      <FlatList
+        data={repositorio}
+        renderItem={item => renderItemComponent(item)}
+        keyExtractor={item => item.id.toString()}
+        ItemSeparatorComponent={ItemSeparator}
+        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={() => setRefreshing(true)} />}
+      />
+      <Button title='Refresh' onPress={onRefresh} />
+    </>
   )
 }
 
